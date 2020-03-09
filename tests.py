@@ -3,9 +3,14 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.colors
 from glob import glob
 import librosa as lr
 import librosa.display
+
+DB_MIN = 0
+DB_MAX = 80
+
 
 data_dir = '/home/mithradiel/Downloads/Musics/Slipknot/'
 audio_file = glob(data_dir + '/snuff.wav')
@@ -14,17 +19,10 @@ time = np.arange(0, len(audio)) / sfreq
 
 D_left = np.abs(lr.stft(audio, center=False))
 
-librosa.display.specshow(lr.amplitude_to_db(D_left,ref=np.max),y_axis='log', x_axis='time')
+db = lr.amplitude_to_db(D_left,ref=np.max)
 
-plt.title('Power spectrogram')
-plt.colorbar(format='%+2.0f dB')
-plt.tight_layout()
-
-
-'''
-fig, (ax, ax2) = plt.subplots(2)
+fig, ax = plt.subplots()
 ax.plot(time, audio)
 
 ax.set(xlabel='Time (s)', ylabel='Sound Amplitude')
-print("Mostrar")'''
 plt.show()
