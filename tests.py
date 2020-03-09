@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.colors
 from glob import glob
 import librosa as lr
 import librosa.display
@@ -19,7 +16,10 @@ time = np.arange(0, len(audio)) / sfreq
 
 D_left = np.abs(lr.stft(audio, center=False))
 
-db = lr.amplitude_to_db(D_left,ref=np.max)
+librosa.display.specshow(lr.amplitude_to_db(D_left,ref=np.max), y_axis='log', x_axis='time')
+plt.title('Power Spectrogram')
+plt.colorbar(format='%+2.0f dB')
+plt.tight_layout()
 
 fig, ax = plt.subplots()
 ax.plot(time, audio)
