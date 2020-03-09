@@ -11,8 +11,13 @@ audio_file = glob(data_dir + '/snuff.wav')
 audio, sfreq = lr.load(audio_file[0])
 time = np.arange(0, len(audio)) / sfreq
 
-fig, ax = plt.subplots()
+D_left = np.abs(lr.stft(audio, center=False))
+print(len(D_left[0]))
+print(len(audio))
+
+fig, (ax, ax2) = plt.subplots(2)
 ax.plot(time, audio)
+
 ax.set(xlabel='Time (s)', ylabel='Sound Amplitude')
 print("Mostrar")
 plt.show()
