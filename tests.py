@@ -5,10 +5,6 @@ from glob import glob
 import librosa as lr
 import librosa.display
 
-DB_MIN = 0
-DB_MAX = 80
-
-
 data_dir = '/home/mithradiel/Downloads/Musics/Slipknot/'
 audio_file = glob(data_dir + '/snuff.wav')
 audio, sfreq = lr.load(audio_file[0])
